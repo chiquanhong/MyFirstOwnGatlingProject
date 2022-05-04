@@ -4,6 +4,17 @@ import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
 
 class ComputerDatabase extends Simulation {
+
+  private def getProperty(propertyName: String, defaultValue: String) = {
+    Option(System.getenv(propertyName))
+      .orElse(Option(System.getProperty(propertyName)))
+      .getOrElse(defaultValue)
+  }
+
+  def userCount: Int = getProperty("USERS", "5").toInt
+  def rampDuration: Int = getProperty("RAMP_DURATION", "10").toInt
+  def testDuration: Int = getProperty("DURATION", "60").toInt
+
   val httpProtocol = http
     .baseUrl("https://computer-database.gatling.io")
     .inferHtmlResources(BlackList(""".*\.js""", """.*\.css""", """.*\.gif""", """.*\.jpeg""", """.*\.jpg""", """.*\.ico""", """.*\.woff""", """.*\.woff2""", """.*\.(t|o)tf""", """.*\.png""", """.*detectportal\.firefox\.com.*"""), WhiteList())
@@ -36,4 +47,5 @@ class ComputerDatabase extends Simulation {
     .exec(getAllComputers()).exec(getToCreationPage()).exec(createNewComputer())
 
   setUp(scn.inject(atOnceUsers(1))).protocols(httpProtocol)
+  //setUp(scn.inject(atOnceUsers(1), rampUsers(userCount) during (rampDuration))).protocols(httpProtocol).maxDuration(testDuration)
 }

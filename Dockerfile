@@ -1,3 +1,4 @@
+#!/bin/bash
 FROM maven:3.6.0-jdk-8-alpine
 
 RUN apk add -Uuv python less py-pip openssl tzdata
@@ -14,6 +15,7 @@ RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.1.1:go-offline
 
 COPY src/ /build/src
 COPY bin/run.sh .
+RUN chmod +x run.sh
 
 RUN mvn install --offline
 

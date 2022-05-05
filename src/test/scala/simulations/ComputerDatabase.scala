@@ -2,6 +2,8 @@ package simulations
 import io.gatling.core.Predef._
 import io.gatling.core.structure.ChainBuilder
 import io.gatling.http.Predef._
+import scala.language.postfixOps
+import scala.concurrent.duration.{FiniteDuration, _}
 
 class ComputerDatabase extends Simulation {
 
@@ -12,8 +14,8 @@ class ComputerDatabase extends Simulation {
   }
 
   def userCount: Int = getProperty("USERS", "5").toInt
-  def rampDuration: Int = getProperty("RAMP_DURATION", "10").toInt
-  def testDuration: Int = getProperty("DURATION", "60").toInt
+  def rampDuration: FiniteDuration = getProperty("RAMP_DURATION", "20").toInt seconds
+  def testDuration: FiniteDuration = getProperty("DURATION", "30").toInt seconds
 
   val httpProtocol = http
     .baseUrl("https://computer-database.gatling.io")

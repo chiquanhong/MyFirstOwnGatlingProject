@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="210451bd-e190-4f12-bc3b-69b7238442e1" name="Changes" comment="add scala-maven-plugin to pom.xml">
-      <change afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+    <list default="true" id="210451bd-e190-4f12-bc3b-69b7238442e1" name="Changes" comment="preparation for docker">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/run.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/scala/simulations/ComputerDatabase.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/simulations/ComputerDatabase.scala" afterDir="false" />
@@ -28,7 +29,9 @@
     <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="28h6X7ftYCGcY0HgFhF6e36VCgn" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -113,6 +116,7 @@
     <MESSAGE value="my first own gatling project init" />
     <MESSAGE value="set simulationClass in pom.xml" />
     <MESSAGE value="add scala-maven-plugin to pom.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="add scala-maven-plugin to pom.xml" />
+    <MESSAGE value="preparation for docker" />
+    <option name="LAST_COMMIT_MESSAGE" value="preparation for docker" />
   </component>
 </project>

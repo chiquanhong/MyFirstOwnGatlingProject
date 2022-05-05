@@ -12,3 +12,8 @@ docker run gatling-runner -r test -DUSERS 5 -DRAMPUP 10 -DRAMPUP_DURATION 20 -DD
 
 ## run tests via gatling command line
 mvn gatling:test -Dgatling.simulationClass=simulations.ComputerDatabase
+  
+## to run in jenkins
+  - create a jenkins pipeline (not freestyle)
+  - connect to repo
+  - link the "Jenkinsfile" in it

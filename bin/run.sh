@@ -1,13 +1,5 @@
 #!/bin/bash
-function help_text {
-    cat <<EOF
-    Usage: $0 [ -p|--profile PROFILE ] [ -r|--report-bucket REPORT_BUCKET ] [-h]
-        PROFILE         (optional) The profile to use from ~/.aws/credentials.
-        REPORT_BUCKET   (required) name of the S3 bucket to upload the reports to. Must be in same AWS account as profile.
-                                   It must be provided.
-EOF
-    exit 1
-}
+
 
 while [ $# -gt 0 ]; do
     arg=$1
@@ -22,6 +14,26 @@ while [ $# -gt 0 ]; do
         -r|--report-bucket)
             REPORT_BUCKET="$2"
             shift; shift
+        ;;
+        -DUSERS)
+          USERS="$2"
+          shift;
+          shift
+        ;;
+        -DRAMPUP)
+            RAMPUP="$2"
+            shift;
+            shift
+        ;;
+        -DRAMPUP_DURATION)
+            RAMPUP_DURATION="$2"
+            shift;
+            shift
+        ;;
+        -DDURATION)
+            DURATION="$2"
+            shift;
+            shift
         ;;
         *)
             echo "ERROR: Unrecognised option: ${arg}"
@@ -42,10 +54,14 @@ fi
 rm -rf target/gatling/*
 
 # Run load test
-mvn gatling:test -Dgatling.simulationClass=simulations.ComputerDatabase
+mvn gatling:test -Dgatling.simulationClass=simulations.ComputerDatabase -DUSERS=${USERS} -DRAMPUP=${RAMPUP} -DRAMPUP_DURATION=${RAMPUP_DURATION} -DDURATION=${DURATION}
 
 #Upload reports
 for _dir in target/gatling/*/
 do
    aws s3 cp ${_dir}simulation.log s3://${REPORT_BUCKET}/logs/$HOSTNAME-simulation.log
 done
+
+
+# Example call:
+#docker run gatling-runner -r test -DUSERS 5 -DRAMPUP 10 -DRAMPUP_DURATION 20 -DDURATION 30

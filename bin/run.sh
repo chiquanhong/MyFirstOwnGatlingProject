@@ -1,3 +1,4 @@
+#!/bin/bash
 function help_text {
     cat <<EOF
     Usage: $0 [ -p|--profile PROFILE ] [ -r|--report-bucket REPORT_BUCKET ] [-h]
@@ -41,7 +42,7 @@ fi
 rm -rf target/gatling/*
 
 # Run load test
-mvn gatling:test -o
+mvn gatling:test -Dgatling.simulationClass=simulations.ComputerDatabase
 
 #Upload reports
 for _dir in target/gatling/*/

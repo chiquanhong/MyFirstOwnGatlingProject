@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="210451bd-e190-4f12-bc3b-69b7238442e1" name="Changes" comment="preparation for docker">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/bin/run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/simulations/ComputerDatabase.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/simulations/ComputerDatabase.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651734847934</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="preparation for docker">
+      <created>1651740949785</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1651740949785</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

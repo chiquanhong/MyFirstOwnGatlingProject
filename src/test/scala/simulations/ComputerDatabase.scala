@@ -13,9 +13,17 @@ class ComputerDatabase extends Simulation {
       .getOrElse(defaultValue)
   }
 
-  def userCount: Int = getProperty("USERS", "5").toInt
+  def userCount: Int = getProperty("USERS", "1").toInt
+  def userRampUp: Int = getProperty("RAMPUP", "5").toInt
   def rampDuration: FiniteDuration = getProperty("RAMP_DURATION", "20").toInt seconds
   def testDuration: FiniteDuration = getProperty("DURATION", "30").toInt seconds
+
+  before {
+    println(s"Running test with ${userCount} users at once")
+    println(s"Running test with ${userRampUp} ramped users")
+    println(s"Ramping users over ${rampDuration} seconds")
+    println(s"Total test duration: ${testDuration} seconds")
+  }
 
   val httpProtocol = http
     .baseUrl("https://computer-database.gatling.io")
@@ -48,6 +56,6 @@ class ComputerDatabase extends Simulation {
   val scn = scenario("ComputerDatabase")
     .exec(getAllComputers()).exec(getToCreationPage()).exec(createNewComputer())
 
-  setUp(scn.inject(atOnceUsers(1))).protocols(httpProtocol)
-  //setUp(scn.inject(atOnceUsers(1), rampUsers(userCount) during (rampDuration))).protocols(httpProtocol).maxDuration(testDuration)
+  //setUp(scn.inject(atOnceUsers(1))).protocols(httpProtocol)
+  setUp(scn.inject(atOnceUsers(userCount), rampUsers(userRampUp) during (rampDuration))).protocols(httpProtocol).maxDuration(testDuration)
 }

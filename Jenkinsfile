@@ -20,20 +20,18 @@
 }*/
 
 pipeline {
-    agent {
-        docker {
-          image 'chiquanhong/gatling-runner'
-          }
-     }
+    agent any
     stages {
+        stage("Build docker image") {
+            agent {
+                docker {
+                    image 'chiquanhong/gatling-runner'
+                }
+            }
+        }
         stage("Run Gatling from docker container") {
             steps {
                 sh 'docker run gatling-runner -r test -DUSERS 5 -DRAMPUP 10 -DRAMPUP_DURATION 20 -DDURATION 30'
-            }
-            post {
-                always {
-                    gatlingArchive()
-                }
             }
         }
     }

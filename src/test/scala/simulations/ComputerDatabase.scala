@@ -27,7 +27,6 @@ class ComputerDatabase extends Simulation {
 
   val httpProtocol = http
     .baseUrl("https://computer-database.gatling.io")
-    .inferHtmlResources(BlackList(""".*\.js""", """.*\.css""", """.*\.gif""", """.*\.jpeg""", """.*\.jpg""", """.*\.ico""", """.*\.woff""", """.*\.woff2""", """.*\.(t|o)tf""", """.*\.png""", """.*detectportal\.firefox\.com.*"""), WhiteList())
 
   def getAllComputers() = {
     exec(http("get all computers")
